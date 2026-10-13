@@ -2,7 +2,7 @@ import LikeButton from '@/components/like-button'
 import { ANIMATION_DELAY, CARD_SPACING } from '@/consts'
 import { motion } from 'motion/react'
 import { useCenterStore } from '@/hooks/use-center'
-import { useConfigStore } from './stores/config-store'
+import { useConfigStore, useHomeLayoutStore } from './stores/config-store'
 import { HomeDraggableLayer } from './home-draggable-layer'
 
 export default function LikePosition() {
@@ -13,13 +13,23 @@ export default function LikePosition() {
 	const socialButtonsStyles = cardStyles.socialButtons
 	const musicCardStyles = cardStyles.musicCard
 	const shareCardStyles = cardStyles.shareCard
+	const socialHeight = useHomeLayoutStore(state => state.socialButtonsSize.height) || socialButtonsStyles.height
+	const socialY = socialButtonsStyles.offsetY !== null ? center.y + socialButtonsStyles.offsetY : center.y + hiCardStyles.height / 2 + CARD_SPACING
+	const socialBottom = cardStyles.socialButtons.enabled !== false ? socialY + socialHeight + CARD_SPACING : 0
+	const musicY =
+		musicCardStyles.offsetY !== null
+			? center.y + musicCardStyles.offsetY
+			: Math.max(center.y - cardStyles.clockCard.offset + CARD_SPACING + cardStyles.calendarCard.height + CARD_SPACING, socialBottom)
 
 	const x =
 		styles.offsetX !== null ? center.x + styles.offsetX : center.x + hiCardStyles.width / 2 - socialButtonsStyles.width + shareCardStyles.width + CARD_SPACING
 	const y =
 		styles.offsetY !== null
 			? center.y + styles.offsetY
-			: center.y + hiCardStyles.height / 2 + CARD_SPACING + socialButtonsStyles.height + CARD_SPACING + musicCardStyles.height + CARD_SPACING
+			: Math.max(
+					center.y + hiCardStyles.height / 2 + CARD_SPACING + socialHeight + CARD_SPACING + musicCardStyles.height + CARD_SPACING,
+					cardStyles.musicCard.enabled !== false ? musicY + musicCardStyles.height + CARD_SPACING : 0
+				)
 
 	return (
 		<HomeDraggableLayer cardKey='likePosition' x={x} y={y} width={styles.width} height={styles.height}>
