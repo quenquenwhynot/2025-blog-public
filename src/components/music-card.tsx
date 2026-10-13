@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useMemo } from 'react'
 import Card from '@/components/card'
 import { useCenterStore } from '@/hooks/use-center'
-import { useConfigStore } from '../app/(home)/stores/config-store'
+import { useConfigStore, useHomeLayoutStore } from '../app/(home)/stores/config-store'
 import { CARD_SPACING } from '@/consts'
 import MusicSVG from '@/svgs/music.svg'
 import PlaySVG from '@/svgs/play.svg'
@@ -22,6 +22,10 @@ export default function MusicCard() {
 	const hiCardStyles = cardStyles.hiCard
 	const clockCardStyles = cardStyles.clockCard
 	const calendarCardStyles = cardStyles.calendarCard
+	const socialButtonsStyles = cardStyles.socialButtons
+	const socialHeight = useHomeLayoutStore(state => state.socialButtonsSize.height) || socialButtonsStyles.height
+	const socialY = socialButtonsStyles.offsetY !== null ? center.y + socialButtonsStyles.offsetY : center.y + hiCardStyles.height / 2 + CARD_SPACING
+	const socialBottom = cardStyles.socialButtons.enabled !== false ? socialY + socialHeight + CARD_SPACING : 0
 
 	const [isPlaying, setIsPlaying] = useState(false)
 	const [currentIndex, setCurrentIndex] = useState(0)
@@ -43,9 +47,12 @@ export default function MusicCard() {
 		// Default position on home page
 		return {
 			x: styles.offsetX !== null ? center.x + styles.offsetX : center.x + CARD_SPACING + hiCardStyles.width / 2 - styles.offset,
-			y: styles.offsetY !== null ? center.y + styles.offsetY : center.y - clockCardStyles.offset + CARD_SPACING + calendarCardStyles.height + CARD_SPACING
+			y:
+				styles.offsetY !== null
+					? center.y + styles.offsetY
+					: Math.max(center.y - clockCardStyles.offset + CARD_SPACING + calendarCardStyles.height + CARD_SPACING, socialBottom)
 		}
-	}, [isPlaying, isHomePage, center, styles, hiCardStyles, clockCardStyles, calendarCardStyles])
+	}, [isPlaying, isHomePage, center, styles, hiCardStyles, clockCardStyles, calendarCardStyles, socialBottom])
 
 	const { x, y } = position
 
