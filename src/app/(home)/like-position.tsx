@@ -12,28 +12,24 @@ export default function LikePosition() {
 	const hiCardStyles = cardStyles.hiCard
 	const socialButtonsStyles = cardStyles.socialButtons
 	const musicCardStyles = cardStyles.musicCard
-	const shareCardStyles = cardStyles.shareCard
-	const socialHeight = useHomeLayoutStore(state => state.socialButtonsSize.height) || socialButtonsStyles.height
+	const { socialButtonsSize, musicHeight } = useHomeLayoutStore()
+	const socialWidth = socialButtonsSize.width || socialButtonsStyles.width
+	const socialHeight = socialButtonsSize.height || socialButtonsStyles.height
+	const socialX = socialButtonsStyles.offsetX !== null ? center.x + socialButtonsStyles.offsetX : center.x + hiCardStyles.width / 2 - socialWidth
 	const socialY = socialButtonsStyles.offsetY !== null ? center.y + socialButtonsStyles.offsetY : center.y + hiCardStyles.height / 2 + CARD_SPACING
-	const socialBottom = cardStyles.socialButtons.enabled !== false ? socialY + socialHeight + CARD_SPACING : 0
-	const musicY =
-		musicCardStyles.offsetY !== null
-			? center.y + musicCardStyles.offsetY
-			: Math.max(center.y - cardStyles.clockCard.offset + CARD_SPACING + cardStyles.calendarCard.height + CARD_SPACING, socialBottom)
+	const musicX = musicCardStyles.offsetX !== null ? center.x + musicCardStyles.offsetX : socialX + socialWidth - musicCardStyles.width
+	const musicY = musicCardStyles.offsetY !== null ? center.y + musicCardStyles.offsetY : socialY + socialHeight + CARD_SPACING
 
-	const x =
-		styles.offsetX !== null ? center.x + styles.offsetX : center.x + hiCardStyles.width / 2 - socialButtonsStyles.width + shareCardStyles.width + CARD_SPACING
-	const y =
-		styles.offsetY !== null
-			? center.y + styles.offsetY
-			: Math.max(
-					center.y + hiCardStyles.height / 2 + CARD_SPACING + socialHeight + CARD_SPACING + musicCardStyles.height + CARD_SPACING,
-					cardStyles.musicCard.enabled !== false ? musicY + musicCardStyles.height + CARD_SPACING : 0
-				)
+	const x = styles.offsetX !== null ? center.x + styles.offsetX : musicX + musicCardStyles.width + CARD_SPACING
+	const y = styles.offsetY !== null ? center.y + styles.offsetY : musicY + ((musicHeight || musicCardStyles.height) - styles.height) / 2
 
 	return (
 		<HomeDraggableLayer cardKey='likePosition' x={x} y={y} width={styles.width} height={styles.height}>
-			<motion.div className='absolute max-sm:static' initial={{ left: x, top: y }} animate={{ left: x, top: y }}>
+			<motion.div
+				className='absolute max-sm:static'
+				style={{ width: styles.width, height: styles.height }}
+				initial={{ left: x, top: y }}
+				animate={{ left: x, top: y }}>
 				{siteContent.enableChristmas && (
 					<>
 						<img
@@ -45,7 +41,7 @@ export default function LikePosition() {
 					</>
 				)}
 
-				<LikeButton delay={cardStyles.shareCard.order * ANIMATION_DELAY * 1000} />
+				<LikeButton className='flex h-full w-full items-center justify-center p-0' delay={styles.order * ANIMATION_DELAY * 1000} />
 			</motion.div>
 		</HomeDraggableLayer>
 	)
