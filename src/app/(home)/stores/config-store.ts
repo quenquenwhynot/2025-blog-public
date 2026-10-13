@@ -43,3 +43,12 @@ export const useConfigStore = create<ConfigStore>((set, get) => ({
 	}
 }))
 
+// Rendered sizes are transient; keep them out of the saved site configuration.
+export const useHomeLayoutStore = create<{
+	socialButtonsSize: { width: number; height: number }
+	setSocialButtonsSize: (width: number, height: number) => void
+}>(set => ({
+	socialButtonsSize: { width: 0, height: 0 },
+	setSocialButtonsSize: (width, height) =>
+		set(state => (state.socialButtonsSize.width === width && state.socialButtonsSize.height === height ? state : { socialButtonsSize: { width, height } }))
+}))
