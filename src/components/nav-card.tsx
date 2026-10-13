@@ -38,7 +38,8 @@ export default function NavCard() {
 	const { siteContent, cardStyles } = useConfigStore()
 	const styles = cardStyles.navCard
 	const hiCardStyles = cardStyles.hiCard
-	const form = maxSM ? 'icons' : pathname === '/' ? 'full' : pathname.startsWith('/write') ? 'mini' : 'icons'
+	const sidebarFits = center.x - hiCardStyles.width / 2 - styles.width - CARD_SPACING >= 16
+	const form = maxSM || (pathname === '/' && !sidebarFits) ? 'icons' : pathname === '/' ? 'full' : pathname.startsWith('/write') ? 'mini' : 'icons'
 	const [hoveredHref, setHoveredHref] = useState<string | null>(null)
 	const [contentHeight, setContentHeight] = useState(0)
 	const navRef = useRef<HTMLElement>(null)
