@@ -1,7 +1,7 @@
 import { useCenterStore } from '@/hooks/use-center'
 import GithubSVG from '@/svgs/github.svg'
 import { ANIMATION_DELAY, CARD_SPACING } from '@/consts'
-import { useConfigStore } from './stores/config-store'
+import { useConfigStore, useHomeLayoutStore } from './stores/config-store'
 import JuejinSVG from '@/svgs/juejin.svg'
 import EmailSVG from '@/svgs/email.svg'
 import XSVG from '@/svgs/x.svg'
@@ -54,6 +54,13 @@ export default function SocialButtons() {
 	const { maxSM, init } = useSize()
 	const styles = cardStyles.socialButtons
 	const hiCardStyles = cardStyles.hiCard
+	const { socialButtonsSize, setSocialButtonsSize } = useHomeLayoutStore()
+	const rowRef = useRef<HTMLDivElement>(null)
+	const rightEdge = center.x + hiCardStyles.width / 2
+	const articleSpace = cardStyles.articleCard.enabled !== false ? cardStyles.articleCard.width + CARD_SPACING : 0
+	const maxWidth = maxSM ? Math.max(1, center.width - 32) : Math.max(1, rightEdge - articleSpace - 16)
+	const width = socialButtonsSize.width || Math.min(styles.width, maxWidth)
+	const height = socialButtonsSize.height || styles.height
 	const order = maxSM && init ? 0 : styles.order
 	const delay = maxSM && init ? 0 : 100
 
@@ -66,6 +73,19 @@ export default function SocialButtons() {
 	const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({})
 	const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({})
 	const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({})
+
+	useEffect(() => {
+		const row = rowRef.current
+		if (!row) return
+		const update = () => setSocialButtonsSize(row.offsetWidth, row.offsetHeight)
+		update()
+		const observer = new ResizeObserver(update)
+		observer.observe(row)
+		return () => {
+			observer.disconnect()
+			setSocialButtonsSize(0, 0)
+		}
+	}, [showStates.container, setSocialButtonsSize])
 
 	useEffect(() => {
 		const baseDelay = order * ANIMATION_DELAY * 1000
@@ -104,7 +124,7 @@ export default function SocialButtons() {
 		}
 	}, [openDropdowns])
 
-	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x + hiCardStyles.width / 2 - styles.width
+	const x = styles.offsetX !== null ? center.x + styles.offsetX : rightEdge - width
 	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y + hiCardStyles.height / 2 + CARD_SPACING
 
 	if (!showStates.container) return null
@@ -150,8 +170,8 @@ export default function SocialButtons() {
 					{...commonProps}
 					className={`font-averia flex items-center gap-2 rounded-xl border bg-[#070707] text-xl text-white ${!hasLabel ? 'p-1.5' : 'px-3 py-1.5'}`}
 					style={{ boxShadow: ' inset 0 0 12px rgba(255, 255, 255, 0.4)' }}>
-					<Icon className={'size-8'} />
-					{hasLabel && button.label}
+					<Icon className='size-8 shrink-0' />
+					{hasLabel && <span className='min-w-0 [overflow-wrap:anywhere]'>{button.label}</span>}
 				</motion.a>
 			)
 		}
@@ -239,7 +259,7 @@ export default function SocialButtons() {
 					href={button.value}
 					target='_blank'
 					{...commonProps}
-					className='card relative flex items-center gap-2 rounded-xl px-3 py-2.5 font-medium whitespace-nowrap'>
+					className='card relative flex items-center gap-2 rounded-xl px-3 py-2.5 font-medium [overflow-wrap:anywhere]'>
 					{hasLabel ? button.label : button.value}
 				</motion.a>
 			)
@@ -251,17 +271,21 @@ export default function SocialButtons() {
 				href={button.value}
 				target='_blank'
 				{...commonProps}
-				className={`card relative rounded-xl font-medium whitespace-nowrap ${hasLabel ? 'flex items-center gap-2 px-3 py-2.5' : 'p-1.5'}`}>
-				<Icon className={iconSize} />
-				{hasLabel && button.label}
+				className={`card relative rounded-xl font-medium ${hasLabel ? 'flex items-center gap-2 px-3 py-2.5' : 'p-1.5'}`}>
+				<Icon className={`${iconSize} shrink-0`} />
+				{hasLabel && <span className='min-w-0 [overflow-wrap:anywhere]'>{button.label}</span>}
 			</motion.a>
 		)
 	}
 
 	return (
-		<HomeDraggableLayer cardKey='socialButtons' x={x} y={y} width={styles.width} height={styles.height}>
+		<HomeDraggableLayer cardKey='socialButtons' x={x} y={y} width={width} height={height}>
 			<motion.div className='absolute max-sm:static' animate={{ left: x, top: y }} initial={{ left: x, top: y }}>
-				<div className='absolute top-0 left-0 flex flex-row-reverse items-center gap-3 max-sm:static' style={{ width: styles.width }}>
+				<div
+					ref={rowRef}
+					aria-label='社交链接'
+					className='flex flex-row-reverse flex-wrap items-center gap-3 [&>*]:max-w-full [&>*]:min-w-0 [&>*]:shrink-0'
+					style={{ width: 'max-content', minWidth: Math.min(styles.width, maxWidth), maxWidth, minHeight: styles.height }}>
 					{sortedButtons.map(button => renderButton(button))}
 				</div>
 			</motion.div>
