@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Card from '@/components/card'
 import { useCenterStore } from '@/hooks/use-center'
-import { useConfigStore } from './stores/config-store'
+import { useConfigStore, useHomeLayoutStore } from './stores/config-store'
 import { CARD_SPACING } from '@/consts'
 import shareList from '@/app/share/list.json'
 import Link from 'next/link'
@@ -25,6 +25,10 @@ export default function ShareCard() {
 	const styles = cardStyles.shareCard
 	const hiCardStyles = cardStyles.hiCard
 	const socialButtonsStyles = cardStyles.socialButtons
+	const socialSize = useHomeLayoutStore(state => state.socialButtonsSize)
+	const socialWidth = socialSize.width || socialButtonsStyles.width
+	const socialHeight = socialSize.height || socialButtonsStyles.height
+	const [contentHeight, setContentHeight] = useState(styles.height)
 
 	useEffect(() => {
 		const randomIndex = Math.floor(Math.random() * shareList.length)
@@ -35,12 +39,18 @@ export default function ShareCard() {
 		return null
 	}
 
-	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x + hiCardStyles.width / 2 - socialButtonsStyles.width
-	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y + hiCardStyles.height / 2 + CARD_SPACING + socialButtonsStyles.height + CARD_SPACING
+	const x =
+		styles.offsetX !== null
+			? center.x + styles.offsetX
+			: socialButtonsStyles.offsetX !== null
+				? center.x + socialButtonsStyles.offsetX
+				: center.x + hiCardStyles.width / 2 - Math.max(socialWidth, socialButtonsStyles.width)
+	const socialY = socialButtonsStyles.offsetY !== null ? center.y + socialButtonsStyles.offsetY : center.y + hiCardStyles.height / 2 + CARD_SPACING
+	const y = styles.offsetY !== null ? center.y + styles.offsetY : socialY + socialHeight + CARD_SPACING
 
 	return (
-		<HomeDraggableLayer cardKey='shareCard' x={x} y={y} width={styles.width} height={styles.height}>
-			<Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y}>
+		<HomeDraggableLayer cardKey='shareCard' x={x} y={y} width={styles.width} height={contentHeight}>
+			<Card order={styles.order} width={styles.width} height={styles.height} autoHeight onHeightChange={setContentHeight} x={x} y={y}>
 				{siteContent.enableChristmas && (
 					<>
 						<img
@@ -59,10 +69,10 @@ export default function ShareCard() {
 						<div className='relative mr-3 h-12 w-12 shrink-0 overflow-hidden rounded-xl'>
 							<img src={randomItem.logo} alt={randomItem.name} className='h-full w-full object-contain' />
 						</div>
-						<h3 className='text-sm font-medium'>{randomItem.name}</h3>
+						<h3 className='min-w-0 text-sm font-medium [overflow-wrap:anywhere]'>{randomItem.name}</h3>
 					</div>
 
-					<p className='text-secondary line-clamp-3 text-xs'>{randomItem.description}</p>
+					<p className='text-secondary text-xs [overflow-wrap:anywhere]'>{randomItem.description}</p>
 				</Link>
 			</Card>
 		</HomeDraggableLayer>
