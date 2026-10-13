@@ -78,6 +78,13 @@
 			"value": "zqiqi183@gmail.com",
 			"label": "",
 			"order": 1
+		},
+		{
+			"id": "button-1791884958945",
+			"type": "juejin",
+			"value": "https://juejin.cn/user/1835552519754969",
+			"label": "稀土掘金",
+			"order": 4
 		}
 	],
 	"clockShowSeconds": true,
