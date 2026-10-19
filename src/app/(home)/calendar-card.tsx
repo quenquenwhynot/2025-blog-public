@@ -1,23 +1,19 @@
 import Card from '@/components/card'
 import { useCenterStore } from '@/hooks/use-center'
+import { useBlogTime } from '@/hooks/use-blog-time'
 import { useConfigStore } from './stores/config-store'
 import { CARD_SPACING } from '@/consts'
-import dayjs from 'dayjs'
-import 'dayjs/locale/zh-cn'
 import { cn } from '@/lib/utils'
 import { HomeDraggableLayer } from './home-draggable-layer'
-
-dayjs.locale('zh-cn')
 
 export default function CalendarCard() {
 	const center = useCenterStore()
 	const { cardStyles, siteContent } = useConfigStore()
-	const now = dayjs()
-	const currentDate = now.date()
-	const firstDayOfMonth = now.startOf('month')
-	const firstDayWeekday = (firstDayOfMonth.day() + 6) % 7
-	const daysInMonth = now.daysInMonth()
-	const currentWeekday = (now.day() + 6) % 7
+	const { time: now, timeZone } = useBlogTime()
+	const currentDate = now?.date()
+	const firstDayWeekday = now ? (now.startOf('month').day() + 6) % 7 : 0
+	const daysInMonth = now?.daysInMonth() ?? 0
+	const currentWeekday = now ? (now.day() + 6) % 7 : -1
 	const styles = cardStyles.calendarCard
 	const hiCardStyles = cardStyles.hiCard
 	const clockCardStyles = cardStyles.clockCard
@@ -39,8 +35,8 @@ export default function CalendarCard() {
 					</>
 				)}
 
-				<h3 className='text-secondary text-sm'>
-					{now.format('YYYY/M/D')} {now.format('ddd')}
+				<h3 className='text-secondary text-sm' title={timeZone ? `当地时间 · ${timeZone}` : '当地时间'}>
+					{now ? `${now.format('YYYY/M/D')} ${now.format('ddd')}` : '\u00a0'}
 				</h3>
 				<ul className={cn('text-secondary mt-3 grid h-[206px] flex-1 grid-cols-7 gap-2 text-sm', (styles.height < 240 || styles.width < 240) && 'text-xs')}>
 					{new Array(7).fill(0).map((_, index) => {
