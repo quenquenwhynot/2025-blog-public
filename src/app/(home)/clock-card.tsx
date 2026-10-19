@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Card from '@/components/card'
 import { useCenterStore } from '@/hooks/use-center'
+import { useBlogTime } from '@/hooks/use-blog-time'
 import { useConfigStore } from './stores/config-store'
 import { useLayoutEditStore } from './stores/layout-edit-store'
 import { CARD_SPACING } from '@/consts'
@@ -14,23 +14,15 @@ export default function ClockCard() {
 	const center = useCenterStore()
 	const { cardStyles, siteContent } = useConfigStore()
 	const editing = useLayoutEditStore(state => state.editing)
-	const [time, setTime] = useState(new Date())
 	const styles = cardStyles.clockCard
 	const hiCardStyles = cardStyles.hiCard
 	const showSeconds = siteContent.clockShowSeconds ?? false
+	const { time, timeZone } = useBlogTime(showSeconds ? 1000 : 5000)
+	const timeLabel = timeZone ? `当地时间 · ${timeZone}` : '当地时间'
 
-	useEffect(() => {
-		const interval = showSeconds ? 1000 : 5000
-		const timer = setInterval(() => {
-			setTime(new Date())
-		}, interval)
-
-		return () => clearInterval(timer)
-	}, [showSeconds])
-
-	const hours = time.getHours().toString().padStart(2, '0')
-	const minutes = time.getMinutes().toString().padStart(2, '0')
-	const seconds = time.getSeconds().toString().padStart(2, '0')
+	const hours = time?.format('HH') ?? '--'
+	const minutes = time?.format('mm') ?? '--'
+	const seconds = time?.format('ss') ?? '--'
 
 	const x = styles.offsetX !== null ? center.x + styles.offsetX : center.x + CARD_SPACING + hiCardStyles.width / 2
 	const y = styles.offsetY !== null ? center.y + styles.offsetY : center.y - styles.offset - styles.height
@@ -55,24 +47,30 @@ export default function ClockCard() {
 					</>
 				)}
 				<div
+					role='timer'
+					aria-label={`${timeLabel} ${hours}:${minutes}${showSeconds ? `:${seconds}` : ''}`}
+					title={timeLabel}
 					onClick={() => {
 						if (!editing) {
 							router.push('/clock')
 						}
 					}}
-					className='bg-secondary/20 card-rounded flex h-full w-full cursor-pointer items-center justify-center gap-1.5 p-2'>
-					<SevenSegmentDigit value={parseInt(hours[0])} />
-					<SevenSegmentDigit value={parseInt(hours[1])} />
-					<Colon />
-					<SevenSegmentDigit value={parseInt(minutes[0])} />
-					<SevenSegmentDigit value={parseInt(minutes[1])} />
-					{showSeconds && (
-						<>
-							<Colon />
-							<SevenSegmentDigit value={parseInt(seconds[0])} />
-							<SevenSegmentDigit value={parseInt(seconds[1])} />
-						</>
-					)}
+					className='bg-secondary/20 card-rounded flex h-full w-full cursor-pointer flex-col items-center justify-center gap-1 p-2'>
+					<span className='text-secondary max-w-full truncate text-[10px] leading-4'>{timeLabel}</span>
+					<div className='flex w-full min-w-0 items-center justify-center gap-1.5' aria-hidden='true'>
+						<SevenSegmentDigit value={parseInt(hours[0])} />
+						<SevenSegmentDigit value={parseInt(hours[1])} />
+						<Colon />
+						<SevenSegmentDigit value={parseInt(minutes[0])} />
+						<SevenSegmentDigit value={parseInt(minutes[1])} />
+						{showSeconds && (
+							<>
+								<Colon />
+								<SevenSegmentDigit value={parseInt(seconds[0])} />
+								<SevenSegmentDigit value={parseInt(seconds[1])} />
+							</>
+						)}
+					</div>
 				</div>
 			</Card>
 		</HomeDraggableLayer>
@@ -98,7 +96,7 @@ function SevenSegmentDigit({ value, className }: SevenSegmentDigitProps) {
 		9: [true, true, true, true, false, true, true]
 	}
 
-	const segments = segmentMap[value as keyof typeof segmentMap] || segmentMap[0]
+	const segments = segmentMap[value as keyof typeof segmentMap] || new Array(7).fill(false)
 	const activeColor = 'var(--color-primary)'
 	const inactiveColor = 'rgba(0, 0, 0, 0.05)'
 
