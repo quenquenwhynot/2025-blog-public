@@ -1,11 +1,12 @@
 import { useCenterStore } from '@/hooks/use-center'
+import { useBlogTime } from '@/hooks/use-blog-time'
 import Card from '@/components/card'
 import { useConfigStore } from './stores/config-store'
 import { HomeDraggableLayer } from './home-draggable-layer'
 import Link from 'next/link'
 
-function getGreeting() {
-	const hour = new Date().getHours()
+function getGreeting(hour: number | undefined) {
+	if (hour === undefined) return 'Hello'
 
 	if (hour >= 6 && hour < 12) {
 		return 'Good Morning'
@@ -21,7 +22,8 @@ function getGreeting() {
 export default function HiCard() {
 	const center = useCenterStore()
 	const { cardStyles, siteContent } = useConfigStore()
-	const greeting = getGreeting()
+	const { time } = useBlogTime()
+	const greeting = getGreeting(time?.hour())
 	const styles = cardStyles.hiCard
 	const username = siteContent.meta.username || 'Suni'
 
