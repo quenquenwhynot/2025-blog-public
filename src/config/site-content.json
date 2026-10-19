@@ -81,9 +81,9 @@
 		},
 		{
 			"id": "button-1791884958945",
-			"type": "juejin",
-			"value": "https://juejin.cn/user/1835552519754969",
-			"label": "稀土掘金",
+			"type": "bilibili",
+			"value": "https://space.bilibili.com/3546724243081580?spm_id_from=333.1007.0.0",
+			"label": "bilibili",
 			"order": 4
 		}
 	],
