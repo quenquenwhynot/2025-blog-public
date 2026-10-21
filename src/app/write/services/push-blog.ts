@@ -25,7 +25,7 @@ export type PushBlogParams = {
 	originalSlug?: string | null
 }
 
-export async function pushBlog(params: PushBlogParams): Promise<void> {
+export async function pushBlog(params: PushBlogParams): Promise<{ commitSha: string }> {
 	const { form, cover, images, mode = 'create', originalSlug } = params
 
 	if (!form?.slug) throw new Error('需要 slug')
@@ -175,5 +175,5 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
 	toast.info('正在更新分支...')
 	await updateRef(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, `heads/${GITHUB_CONFIG.BRANCH}`, commitData.sha)
 
-	toast.success('发布成功！')
+	return { commitSha: commitData.sha }
 }
