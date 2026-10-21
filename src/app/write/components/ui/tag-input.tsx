@@ -9,10 +9,10 @@ export function TagInput({ tags, onChange }: TagInputProps) {
 	const [tagInput, setTagInput] = useState<string>('')
 
 	const handleAddTag = () => {
-		if (tagInput.trim() && !tags.includes(tagInput.trim())) {
-			onChange([...tags, tagInput.trim()])
-			setTagInput('')
-		}
+		const tag = tagInput.trim()
+		if (!tag) return
+		if (!tags.includes(tag)) onChange([...tags, tag])
+		setTagInput('')
 	}
 
 	const handleRemoveTag = (index: number) => {
@@ -35,12 +35,13 @@ export function TagInput({ tags, onChange }: TagInputProps) {
 			)}
 			<input
 				type='text'
-				placeholder='添加标签（按回车）'
+				placeholder='添加标签（回车或离开输入框保存）'
 				className='w-full bg-transparent text-sm outline-none'
 				value={tagInput}
 				onChange={e => setTagInput(e.target.value)}
+				onBlur={handleAddTag}
 				onKeyDown={e => {
-					if (e.key === 'Enter') {
+					if (e.key === 'Enter' && !e.nativeEvent.isComposing && e.keyCode !== 229) {
 						e.preventDefault()
 						handleAddTag()
 					}
