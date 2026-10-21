@@ -1,14 +1,5 @@
 [
   {
-    "slug": "hello-Bin",
-    "title": "这里是Bin(quenquen)",
-    "tags": [],
-    "date": "2026-10-13T16:47",
-    "summary": "",
-    "hidden": false,
-    "category": ""
-  },
-  {
     "slug": "ai-canvas-game",
     "title": "AI 画布与游戏",
     "tags": [
@@ -549,6 +540,15 @@
     "date": "2025-02-24",
     "summary": "不同设备有不同升级方式，容易报错",
     "cover": "/blogs/pnpm-upgrade/d3d0d5fee572546d.jpg"
+  },
+  {
+    "slug": "hello-Bin",
+    "title": "这里是Bin(quenquen)",
+    "tags": [],
+    "date": "2024-06-06T16:47",
+    "summary": "",
+    "hidden": false,
+    "category": ""
   },
   {
     "slug": "ink-effect",
