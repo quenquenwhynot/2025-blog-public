@@ -6,6 +6,6 @@
   "date": "2026-01-06T17:05",
   "summary": "AI 学习边框特效",
   "cover": "/blogs/electric-border/9b898d43a5a85684.webp",
-  "hidden": false,
+  "hidden": true,
   "category": "代码实现"
 }

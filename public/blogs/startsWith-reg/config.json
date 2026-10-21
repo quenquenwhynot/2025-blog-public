@@ -5,5 +5,6 @@
   ],
   "date": "2023-07-04",
   "summary": "正常认为，startsWith 处理会更好，事实却有所不同。",
-  "cover": "/blogs/startsWith-reg/72d2e45348d26b91.jpg"
+  "cover": "/blogs/startsWith-reg/72d2e45348d26b91.jpg",
+  "hidden": true
 }

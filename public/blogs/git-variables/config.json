@@ -6,5 +6,6 @@
   ],
   "date": "2025-03-10",
   "summary": "Git 变量结合在项目中，或许有奇特火花。",
-  "cover": "/blogs/git-variables/6166433682180769.png"
+  "cover": "/blogs/git-variables/6166433682180769.png",
+  "hidden": true
 }

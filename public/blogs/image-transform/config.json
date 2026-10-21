@@ -6,5 +6,6 @@
   ],
   "date": "2025-03-30",
   "summary": "页面图像点击展示，使其顺化过渡",
-  "cover": "/blogs/image-transform/b4a55dee9304546b.jpg"
+  "cover": "/blogs/image-transform/b4a55dee9304546b.jpg",
+  "hidden": true
 }
