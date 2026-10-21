@@ -1,0 +1,12 @@
+{
+  "title": "智能家居类图：先分清对象，再连关系",
+  "date": "2025-10-12T12:00",
+  "category": "学习笔记",
+  "tags": [
+    "Java",
+    "面向对象",
+    "UML"
+  ],
+  "summary": "以 HomeSphere 课程设计材料为例，整理对象识别与关系判断。",
+  "hidden": false
+}

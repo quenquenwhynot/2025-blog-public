@@ -1,0 +1,12 @@
+{
+  "title": "没有可用 CUDA 时，我怎样整理 GemDepth 的最小运行路径",
+  "date": "2026-09-12T12:00",
+  "category": "项目实践",
+  "tags": [
+    "GemDepth",
+    "Python",
+    "CPU推理"
+  ],
+  "summary": "把环境、权重、输入规模与输出检查分开处理。",
+  "hidden": false
+}

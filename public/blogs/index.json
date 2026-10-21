@@ -1,5 +1,148 @@
 [
   {
+    "slug": "qq-2026-blog-time",
+    "title": "博客时间修复：时钟、日历和问候语要看同一份时间",
+    "date": "2026-10-19T12:00",
+    "category": "建站记录",
+    "tags": [
+      "前端开发",
+      "时间处理",
+      "问题复盘"
+    ],
+    "summary": "从一次相差约半天的显示问题，整理当地时间与日历计算的边界。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-divide-conquer",
+    "title": "分治法复习：先数分出了几个子问题",
+    "date": "2026-10-18T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "算法",
+      "分治法",
+      "复杂度"
+    ],
+    "summary": "把递归式里的子问题数量、规模与合并代价分别说清楚。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-first-order-system",
+    "title": "一阶系统：用时间常数把曲线和公式接起来",
+    "date": "2026-10-17T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "信号与系统",
+      "拉普拉斯变换",
+      "课程作业"
+    ],
+    "summary": "从阶跃和短脉冲响应，理解快慢、稳态与平滑。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-obsidian-publish",
+    "title": "从 Obsidian 写到博客：给发布留一个明确按钮",
+    "date": "2026-10-14T12:00",
+    "category": "建站记录",
+    "tags": [
+      "Obsidian",
+      "Markdown",
+      "写作流程"
+    ],
+    "summary": "专用文章库、稳定网址与单次提交，组成一个可继续维护的发布方式。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-blog-launch",
+    "title": "把 quenquen 博客搭起来：入口、内容和发布链路",
+    "date": "2026-10-13T12:00",
+    "category": "建站记录",
+    "tags": [
+      "个人博客",
+      "Cloudflare",
+      "GitHub"
+    ],
+    "summary": "从模板到自己的站点，整理部署、导航与内容入口的关系。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-project-plan",
+    "title": "三次迭代的计划，先保证每次都有完整一小段",
+    "date": "2026-09-30T12:00",
+    "category": "项目实践",
+    "tags": [
+      "项目管理",
+      "Scrum",
+      "课程项目"
+    ],
+    "summary": "把范围、依赖、容量和完成标准一起放进计划。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-user-stories",
+    "title": "用户故事写完以后，还要能判断它是否完成",
+    "date": "2026-09-24T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "软件工程",
+      "用户故事",
+      "验收标准"
+    ],
+    "summary": "用机器医声课程项目，连接用户价值与可检查结果。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-vulcan-architecture",
+    "title": "VulcanScout 方案：把机器人、网关和平台的责任分开",
+    "date": "2026-09-20T12:00",
+    "category": "项目实践",
+    "tags": [
+      "机器人",
+      "软件架构",
+      "ROS2"
+    ],
+    "summary": "围绕任务状态与弱通信，整理一个课程架构方案。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-gemdepth-cpu",
+    "title": "没有可用 CUDA 时，我怎样整理 GemDepth 的最小运行路径",
+    "date": "2026-09-12T12:00",
+    "category": "项目实践",
+    "tags": [
+      "GemDepth",
+      "Python",
+      "CPU推理"
+    ],
+    "summary": "把环境、权重、输入规模与输出检查分开处理。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-gemdepth-reading",
+    "title": "读 GemDepth：画面稳定，还需要几何关系说得通",
+    "date": "2026-09-08T12:00",
+    "category": "阅读记录",
+    "tags": [
+      "GemDepth",
+      "视频深度",
+      "论文阅读"
+    ],
+    "summary": "围绕相机运动、空间细节与跨帧一致性，整理阅读主线。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-flutter-chat",
+    "title": "Flutter 聊天客户端：界面、会话和请求各有位置",
+    "date": "2026-08-22T12:00",
+    "category": "项目实践",
+    "tags": [
+      "Flutter",
+      "Dart",
+      "聊天应用"
+    ],
+    "summary": "从本地项目手册中整理一个小客户端的结构与状态处理。",
+    "hidden": false
+  },
+  {
     "slug": "ai-canvas-game",
     "title": "AI 画布与游戏",
     "tags": [
@@ -11,6 +154,19 @@
     "cover": "/blogs/ai-canvas-game/ef3e8690dd3f6993.webp",
     "hidden": false,
     "category": ""
+  },
+  {
+    "slug": "qq-2026-spike-reading",
+    "title": "筛脉冲相机论文：先写清楚我到底在找什么",
+    "date": "2026-07-22T12:00",
+    "category": "阅读记录",
+    "tags": [
+      "论文阅读",
+      "脉冲相机",
+      "文献整理"
+    ],
+    "summary": "把输入、输出和任务边界写在筛选表前面。",
+    "hidden": false
   },
   {
     "slug": "plan-b",
@@ -38,6 +194,58 @@
     "category": ""
   },
   {
+    "slug": "qq-2026-digital-twin",
+    "title": "数字孪生与世界模拟器：先区分展示、同步和预测",
+    "date": "2026-06-17T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "数字孪生",
+      "课程汇报",
+      "模型思考"
+    ],
+    "summary": "整理课堂汇报后，给几个容易混用的能力加上边界。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-network-layers",
+    "title": "网络排查：把“网站打不开”拆成几层",
+    "date": "2026-06-09T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "计算机网络",
+      "DNS",
+      "排障"
+    ],
+    "summary": "从域名到页面内容，给故障找一个更具体的位置。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-db-indexes",
+    "title": "索引优化：先读执行计划，再看快了多少",
+    "date": "2026-06-03T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "PostgreSQL",
+      "索引",
+      "查询优化"
+    ],
+    "summary": "把查询条件、数据分布与执行计划放在一起比较。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-robot-materials",
+    "title": "机器人任务准备：尺寸和材料也属于工程问题",
+    "date": "2026-06-01T12:00",
+    "category": "项目实践",
+    "tags": [
+      "机器人",
+      "工程准备",
+      "竞赛"
+    ],
+    "summary": "从限高杆、挡板与斜坡记录里整理物料准备方法。",
+    "hidden": false
+  },
+  {
     "slug": "dev-summary",
     "title": "开发总结",
     "tags": [
@@ -48,6 +256,19 @@
     "cover": "/blogs/dev-summary/6c7db43c84c51f79.svg",
     "hidden": false,
     "category": ""
+  },
+  {
+    "slug": "qq-2026-db-transactions",
+    "title": "数据库事务：回滚只能撤销尚未提交的那一段",
+    "date": "2026-05-24T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "PostgreSQL",
+      "数据库",
+      "事务"
+    ],
+    "summary": "把事务边界画出来，区分提交、回滚与新的补偿操作。",
+    "hidden": false
   },
   {
     "slug": "auto-tool",
@@ -142,6 +363,19 @@
     "category": ""
   },
   {
+    "slug": "qq-2026-research-scope",
+    "title": "科研入门：把“读懂论文”拆成可以回答的问题",
+    "date": "2026-03-18T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "科研入门",
+      "论文阅读",
+      "项目规划"
+    ],
+    "summary": "先弄清输入、流程、训练与证据，再考虑自己的改进。",
+    "hidden": false
+  },
+  {
     "slug": "cursor-keyboard",
     "title": "Cursor 快捷键",
     "tags": [
@@ -220,6 +454,19 @@
     "category": ""
   },
   {
+    "slug": "qq-2026-modeling-attribution",
+    "title": "同一份数据，可以先拆成两个问题",
+    "date": "2026-02-05T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "数学建模",
+      "模型解释",
+      "数据分析"
+    ],
+    "summary": "评委评分与粉丝支持分开建模，避免一个总指标掩盖差异。",
+    "hidden": false
+  },
+  {
     "slug": "model-animation-note",
     "title": "模型动画笔记",
     "tags": [
@@ -231,6 +478,18 @@
     "cover": "/blogs/model-animation-note/0655bc33056c4af1.webp",
     "hidden": false,
     "category": ""
+  },
+  {
+    "slug": "qq-2026-modeling-rules",
+    "title": "数模复盘：比较规则之前，先固定比较条件",
+    "date": "2026-01-30T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "数学建模",
+      "实验设计"
+    ],
+    "summary": "从投票机制分析材料中整理一套更可靠的对比方法。",
+    "hidden": false
   },
   {
     "slug": "cartoon-note-render",
@@ -337,6 +596,18 @@
     "category": "代码实现"
   },
   {
+    "slug": "qq-2025-year-review",
+    "title": "这一年，学习开始有了不同的形状",
+    "date": "2025-12-30T12:00",
+    "category": "生活随笔",
+    "tags": [
+      "年度回顾",
+      "大学生活"
+    ],
+    "summary": "把实验、支教、语言学习和小项目放回同一条成长线。",
+    "hidden": false
+  },
+  {
     "slug": "fix-screen",
     "title": "解决电脑屏幕帧数问题",
     "tags": [
@@ -348,6 +619,32 @@
     "cover": "/blogs/fix-screen/b2e72412daec0169.webp",
     "hidden": false,
     "category": ""
+  },
+  {
+    "slug": "qq-2025-chat-upload",
+    "title": "文件上传：从“发出去”到“确认写入成功”",
+    "date": "2025-12-09T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "文件上传",
+      "接口设计",
+      "CloudChat"
+    ],
+    "summary": "以旧项目协议为起点，补全文件传输需要考虑的边界。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2025-cloudchat-protocol",
+    "title": "CloudChat：聊天界面背后先要有消息约定",
+    "date": "2025-11-29T12:00",
+    "category": "项目实践",
+    "tags": [
+      "Java",
+      "即时通信",
+      "协议设计"
+    ],
+    "summary": "把登录、好友、聊天和文件操作放进一致的消息框架。",
+    "hidden": false
   },
   {
     "slug": "texture-format",
@@ -386,6 +683,108 @@
     "category": "代码实现"
   },
   {
+    "slug": "qq-2025-space-defense",
+    "title": "太空保卫战：一次资源路径问题留下的教训",
+    "date": "2025-11-06T12:00",
+    "category": "项目实践",
+    "tags": [
+      "JavaFX",
+      "小游戏",
+      "调试"
+    ],
+    "summary": "从图片与 FXML 加载问题，重新认识项目目录和运行环境。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2025-oop-home",
+    "title": "智能家居类图：先分清对象，再连关系",
+    "date": "2025-10-12T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "Java",
+      "面向对象",
+      "UML"
+    ],
+    "summary": "以 HomeSphere 课程设计材料为例，整理对象识别与关系判断。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2025-ielts-writing",
+    "title": "英语议论文：先写出理由之间的关系",
+    "date": "2025-09-04T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "雅思",
+      "英语写作"
+    ],
+    "summary": "把立场、理由、例子和解释连成一条能读懂的论证。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2025-ielts-speaking",
+    "title": "雅思口语素材：从背全文改成记线索",
+    "date": "2025-08-24T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "雅思",
+      "英语口语",
+      "学习方法"
+    ],
+    "summary": "把物品、人物与经历素材拆成可灵活使用的结构。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2025-volunteer-reflection",
+    "title": "隔着屏幕，把一件小事认真做完",
+    "date": "2025-08-08T12:00",
+    "category": "生活随笔",
+    "tags": [
+      "志愿服务",
+      "线上支教",
+      "成长"
+    ],
+    "summary": "从线上支教材料里留下关于准备、沟通和耐心的体会。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2025-teaching-english",
+    "title": "单词课也可以有一点结构",
+    "date": "2025-07-18T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "英语学习",
+      "线上支教"
+    ],
+    "summary": "从词义、搭配和小句子入手，减少只背字母的负担。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2025-teaching-math",
+    "title": "教有理数乘除法：规则之后还要有解释",
+    "date": "2025-07-06T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "线上支教",
+      "数学",
+      "教学反思"
+    ],
+    "summary": "从一份数学教案中整理讲解顺序与检查方法。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2025-teaching-plan",
+    "title": "第一次整理线上教案：一节课先有一条主线",
+    "date": "2025-07-01T12:00",
+    "category": "项目实践",
+    "tags": [
+      "志愿服务",
+      "线上支教",
+      "教学设计"
+    ],
+    "summary": "把教学内容、目标、难点和课后练习接起来。",
+    "hidden": false
+  },
+  {
     "slug": "video-split",
     "title": "WebAV 剪切视频",
     "tags": [
@@ -409,6 +808,18 @@
     "cover": "/blogs/google-translate-error/e0f9d6f869c3d53fd4994f900b485aa46bb025ac0fe4ab299ba333ee550ddce3.png"
   },
   {
+    "slug": "qq-2025-review-questions",
+    "title": "期末复习：把目录改写成问题",
+    "date": "2025-06-14T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "学习方法",
+      "期末复习"
+    ],
+    "summary": "从翻资料，转向检查自己能否解释和使用。",
+    "hidden": false
+  },
+  {
     "slug": "object-vs-map",
     "title": "记 Object vs Map 性能表现",
     "tags": [
@@ -418,6 +829,18 @@
     "date": "2025-06-03",
     "summary": "Object 使用大量属性时，使用 Map 会不会更好",
     "cover": "/blogs/object-vs-map/e89a0eee349564c46a1422508b93431803c5fe749f130bfa5fed8e9e80457aae.jpg"
+  },
+  {
+    "slug": "qq-2025-small-progress",
+    "title": "允许一天只完成一件小事",
+    "date": "2025-05-31T12:00",
+    "category": "生活随笔",
+    "tags": [
+      "日常",
+      "学习节奏"
+    ],
+    "summary": "给忙碌留一点具体的刻度。",
+    "hidden": false
   },
   {
     "slug": "array-vs-object",
@@ -431,6 +854,30 @@
     "cover": "/blogs/array-vs-object/9256010842777ef31da9ef0400426955b6442c492ba360e92e477bcfcf194222.png"
   },
   {
+    "slug": "qq-2025-modeling-route",
+    "title": "无人机路线建模：先把地图变成变量",
+    "date": "2025-05-28T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "数学建模",
+      "路径规划"
+    ],
+    "summary": "从一道路线优化题中整理目标、约束和可验证输入。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2025-sort-comparator",
+    "title": "排序之前，先把“谁在前面”说清楚",
+    "date": "2025-05-23T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "排序",
+      "数据结构"
+    ],
+    "summary": "从数字排序到三元组排序，理解比较规则的作用。",
+    "hidden": false
+  },
+  {
     "slug": "solidity-more",
     "title": "Solidity 深入研究",
     "tags": [
@@ -440,6 +887,43 @@
     "date": "2025-05-21",
     "summary": "研究一些更深入的 solidity 知识",
     "cover": "/blogs/solidity-more/59bc0cb2dc4b30f51249684c33c8425b3f4faefe5a65f8f1debb3a4f1a76765d.jpg"
+  },
+  {
+    "slug": "qq-2025-dijkstra",
+    "title": "Dijkstra 实验：最短距离之外，别忘了不可达",
+    "date": "2025-05-17T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "数据结构",
+      "图算法",
+      "Dijkstra"
+    ],
+    "summary": "用非负权图理解选点、松弛和终止条件。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2025-huffman",
+    "title": "哈夫曼编码：沿树走一遍，编码与解码就接上了",
+    "date": "2025-04-27T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "数据结构",
+      "哈夫曼编码"
+    ],
+    "summary": "从合并最小权值节点到逐位解码，保留一条完整思路。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2025-sparse-matrix",
+    "title": "稀疏矩阵：只存非零元素之后，还要约定顺序",
+    "date": "2025-04-10T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "数据结构",
+      "稀疏矩阵"
+    ],
+    "summary": "从三元组实验理解表示方式、坐标约定和比较规则。",
+    "hidden": false
   },
   {
     "slug": "image-transform",
@@ -463,6 +947,18 @@
     "date": "2025-03-27",
     "summary": "快速使用 Hardhat 部署合约，校验合约",
     "cover": "/blogs/solidity-note/59bc0cb2dc4b30f5.jpg"
+  },
+  {
+    "slug": "qq-2025-data-structure-records",
+    "title": "数据结构学习：先问要做什么操作",
+    "date": "2025-03-21T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "数据结构",
+      "学习方法"
+    ],
+    "summary": "比较结构之前，先列出访问、插入、删除和存储要求。",
+    "hidden": false
   },
   {
     "slug": "sort-usage",
@@ -540,6 +1036,143 @@
     "date": "2025-02-24",
     "summary": "不同设备有不同升级方式，容易报错",
     "cover": "/blogs/pnpm-upgrade/d3d0d5fee572546d.jpg"
+  },
+  {
+    "slug": "qq-2025-embedded-integration",
+    "title": "嵌入式课程设计：把独立模块接成一个系统",
+    "date": "2025-01-16T12:00",
+    "category": "项目实践",
+    "tags": [
+      "Arduino",
+      "课程设计",
+      "状态管理"
+    ],
+    "summary": "从灯、蜂鸣器、温湿度和显示屏，理解模块组合后的问题。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2024-first-term",
+    "title": "第一个学期，先学会把问题说清楚",
+    "date": "2024-12-30T12:00",
+    "category": "生活随笔",
+    "tags": [
+      "学期回顾",
+      "大学生活"
+    ],
+    "summary": "代码以外，给自己留下一种可继续学习的方式。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2024-buzzer",
+    "title": "蜂鸣器与节拍：程序里的时间开始变得可听见",
+    "date": "2024-12-18T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "Arduino",
+      "蜂鸣器",
+      "时间控制"
+    ],
+    "summary": "区分频率、持续时间与间隔，理解一个简单旋律的组织。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2024-rgb-led",
+    "title": "从 RGB 小灯开始理解输入与反馈",
+    "date": "2024-12-06T12:00",
+    "category": "项目实践",
+    "tags": [
+      "Arduino",
+      "嵌入式",
+      "RGB"
+    ],
+    "summary": "把灯的变化当成观察程序状态的窗口。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2024-file-io",
+    "title": "文件读写：让程序记得上一次的结果",
+    "date": "2024-11-27T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "C语言",
+      "文件读写"
+    ],
+    "summary": "打开、读取、检查和关闭，构成一个完整的文件操作。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2024-structs",
+    "title": "结构体：把属于同一件事的数据放在一起",
+    "date": "2024-11-15T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "C语言",
+      "结构体"
+    ],
+    "summary": "从多个平行数组，走向一条记录对应一个对象。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2024-pointers",
+    "title": "指针初学：地址、指针和指向的值分开看",
+    "date": "2024-11-03T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "C语言",
+      "指针"
+    ],
+    "summary": "把三个容易混淆的对象放在同一个小例子里。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2024-functions",
+    "title": "从一大段 main 到几个能讲清楚的函数",
+    "date": "2024-10-22T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "C语言",
+      "函数",
+      "模块化"
+    ],
+    "summary": "用最大公约数和交换变量，理解函数的职责与参数。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2024-arrays",
+    "title": "数组与字符串：给结束符留一个位置",
+    "date": "2024-10-09T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "C语言",
+      "数组",
+      "字符串"
+    ],
+    "summary": "从数组实验中整理几个容易忽略的边界。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2024-c-debug",
+    "title": "C 语言入门：先把一轮循环走明白",
+    "date": "2024-09-26T12:00",
+    "category": "学习笔记",
+    "tags": [
+      "C语言",
+      "调试"
+    ],
+    "summary": "用输入、状态变化和输出，拆开看一个小程序。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2024-begin",
+    "title": "把大学的第一份学习记录留下来",
+    "date": "2024-09-08T12:00",
+    "category": "生活随笔",
+    "tags": [
+      "大学生活",
+      "学习方法"
+    ],
+    "summary": "从一个文件夹开始，给学习留下能回头查看的痕迹。",
+    "hidden": false
   },
   {
     "slug": "hello-Bin",

@@ -1,0 +1,12 @@
+{
+  "title": "Flutter 聊天客户端：界面、会话和请求各有位置",
+  "date": "2026-08-22T12:00",
+  "category": "项目实践",
+  "tags": [
+    "Flutter",
+    "Dart",
+    "聊天应用"
+  ],
+  "summary": "从本地项目手册中整理一个小客户端的结构与状态处理。",
+  "hidden": false
+}

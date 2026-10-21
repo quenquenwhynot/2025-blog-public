@@ -1,0 +1,12 @@
+{
+  "title": "从 RGB 小灯开始理解输入与反馈",
+  "date": "2024-12-06T12:00",
+  "category": "项目实践",
+  "tags": [
+    "Arduino",
+    "嵌入式",
+    "RGB"
+  ],
+  "summary": "把灯的变化当成观察程序状态的窗口。",
+  "hidden": false
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Dijkstra 实验：最短距离之外，别忘了不可达",
+  "date": "2025-05-17T12:00",
+  "category": "学习笔记",
+  "tags": [
+    "数据结构",
+    "图算法",
+    "Dijkstra"
+  ],
+  "summary": "用非负权图理解选点、松弛和终止条件。",
+  "hidden": false
+}
