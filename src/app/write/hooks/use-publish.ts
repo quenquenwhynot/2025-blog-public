@@ -1,14 +1,16 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { readFileAsText } from '@/lib/file-utils'
 import { toast } from 'sonner'
 import { pushBlog } from '../services/push-blog'
 import { deleteBlog } from '../services/delete-blog'
 import { useWriteStore } from '../stores/write-store'
 import { useAuthStore } from '@/hooks/use-auth'
+import { GITHUB_CONFIG } from '@/consts'
 
 export function usePublish() {
 	const { loading, setLoading, form, cover, images, mode, originalSlug } = useWriteStore()
 	const { isAuth, setPrivateKey } = useAuthStore()
+	const [commitUrl, setCommitUrl] = useState<string | null>(null)
 
 	const onChoosePrivateKey = useCallback(
 		async (file: File) => {
@@ -21,7 +23,8 @@ export function usePublish() {
 	const onPublish = useCallback(async () => {
 		try {
 			setLoading(true)
-			await pushBlog({
+			setCommitUrl(null)
+			const { commitSha } = await pushBlog({
 				form,
 				cover,
 				images,
@@ -29,8 +32,8 @@ export function usePublish() {
 				originalSlug
 			})
 
-			const successMsg = mode === 'edit' ? '更新成功' : '发布成功'
-			toast.success(successMsg)
+			setCommitUrl(`https://github.com/${GITHUB_CONFIG.OWNER}/${GITHUB_CONFIG.REPO}/commit/${commitSha}`)
+			toast.success('修改已提交，网站部署完成后生效', { duration: 8000 })
 		} catch (err: any) {
 			console.error(err)
 			toast.error(err?.message || '操作失败')
@@ -58,6 +61,7 @@ export function usePublish() {
 
 	return {
 		isAuth,
+		commitUrl,
 		loading,
 		onChoosePrivateKey,
 		onPublish,
