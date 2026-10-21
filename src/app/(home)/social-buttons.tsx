@@ -160,6 +160,7 @@ export default function SocialButtons() {
 		const Icon = iconMap[button.type]
 		const hasLabel = Boolean(button.label)
 		const iconSize = hasLabel ? 'size-6' : 'size-8'
+		const mobileButtonClass = 'max-sm:flex max-sm:h-full max-sm:min-h-12 max-sm:w-full max-sm:items-center max-sm:justify-center max-sm:gap-2 max-sm:px-3 max-sm:py-2.5 max-sm:text-base'
 
 		if (button.type === 'github') {
 			return (
@@ -168,7 +169,7 @@ export default function SocialButtons() {
 					href={button.value}
 					target='_blank'
 					{...commonProps}
-					className={`font-averia flex items-center gap-2 rounded-xl border bg-[#070707] text-xl text-white ${!hasLabel ? 'p-1.5' : 'px-3 py-1.5'}`}
+					className={`font-averia flex items-center gap-2 rounded-xl border bg-[#070707] text-xl text-white ${!hasLabel ? 'p-1.5' : 'px-3 py-1.5'} ${mobileButtonClass}`}
 					style={{ boxShadow: ' inset 0 0 12px rgba(255, 255, 255, 0.4)' }}>
 					<Icon className='size-8 shrink-0' />
 					{hasLabel && <span className='min-w-0 [overflow-wrap:anywhere]'>{button.label}</span>}
@@ -185,11 +186,13 @@ export default function SocialButtons() {
 
 			const isImagePath = button.value.startsWith('/images/social-buttons/')
 			const isOpen = openDropdowns[button.id] || false
+			const contactLabel = { email: '邮箱', wechat: '微信', qq: 'QQ' }[button.type]
 
 			if (isImagePath && (button.type === 'wechat' || button.type === 'qq')) {
 				return (
 					<div key={button.id} className='relative'>
 						<motion.button
+							aria-label={contactLabel}
 							ref={el => {
 								buttonRefs.current[button.id] = el
 							}}
@@ -197,8 +200,9 @@ export default function SocialButtons() {
 								setOpenDropdowns(prev => ({ ...prev, [button.id]: !prev[button.id] }))
 							}}
 							{...commonProps}
-							className='card btn relative rounded-xl p-1.5'>
+							className={`card btn relative rounded-xl p-1.5 ${mobileButtonClass}`}>
 							<Icon className='size-8' />
+							<span className='sm:hidden'>{contactLabel}</span>
 						</motion.button>
 						{typeof window !== 'undefined' &&
 							createPortal(
@@ -240,14 +244,16 @@ export default function SocialButtons() {
 			return (
 				<motion.button
 					key={button.id}
+					aria-label={contactLabel}
 					onClick={() => {
 						navigator.clipboard.writeText(button.value).then(() => {
 							toast.success(messageMap[button.type as 'email' | 'wechat' | 'qq'])
 						})
 					}}
 					{...commonProps}
-					className='card btn relative rounded-xl p-1.5'>
+					className={`card btn relative rounded-xl p-1.5 ${mobileButtonClass}`}>
 					<Icon className='size-8' />
+					<span className='sm:hidden'>{contactLabel}</span>
 				</motion.button>
 			)
 		}
@@ -259,7 +265,7 @@ export default function SocialButtons() {
 					href={button.value}
 					target='_blank'
 					{...commonProps}
-					className='card relative flex items-center gap-2 rounded-xl px-3 py-2.5 font-medium [overflow-wrap:anywhere]'>
+					className={`card relative flex items-center gap-2 rounded-xl px-3 py-2.5 font-medium [overflow-wrap:anywhere] ${mobileButtonClass}`}>
 					{hasLabel ? button.label : button.value}
 				</motion.a>
 			)
@@ -271,7 +277,7 @@ export default function SocialButtons() {
 				href={button.value}
 				target='_blank'
 				{...commonProps}
-				className={`card relative rounded-xl font-medium ${hasLabel ? 'flex items-center gap-2 px-3 py-2.5' : 'p-1.5'}`}>
+				className={`card relative rounded-xl font-medium ${hasLabel ? 'flex items-center gap-2 px-3 py-2.5' : 'p-1.5'} ${mobileButtonClass}`}>
 				<Icon className={`${iconSize} shrink-0`} />
 				{hasLabel && <span className='min-w-0 [overflow-wrap:anywhere]'>{button.label}</span>}
 			</motion.a>
@@ -280,13 +286,17 @@ export default function SocialButtons() {
 
 	return (
 		<HomeDraggableLayer cardKey='socialButtons' x={x} y={y} width={width} height={height}>
-			<motion.div className='absolute max-sm:static' animate={{ left: x, top: y }} initial={{ left: x, top: y }}>
+			<motion.div
+				className='absolute max-sm:static'
+				style={maxSM ? { width: Math.min(hiCardStyles.width, maxWidth) } : undefined}
+				animate={{ left: x, top: y }}
+				initial={{ left: x, top: y }}>
 				<div
 					ref={rowRef}
 					aria-label='社交链接'
-					className='flex flex-row-reverse flex-wrap items-center gap-3 [&>*]:max-w-full [&>*]:min-w-0 [&>*]:shrink-0'
-					style={{ width: 'max-content', minWidth: Math.min(styles.width, maxWidth), maxWidth, minHeight: styles.height }}>
-					{sortedButtons.map(button => renderButton(button))}
+					className='flex flex-row-reverse flex-wrap items-center gap-3 max-sm:grid max-sm:auto-rows-fr max-sm:grid-cols-2 max-sm:items-stretch max-sm:[&_svg]:size-6 [&>*]:max-w-full [&>*]:min-w-0 [&>*]:shrink-0'
+					style={{ width: maxSM ? '100%' : 'max-content', minWidth: maxSM ? undefined : Math.min(styles.width, maxWidth), maxWidth, minHeight: maxSM ? undefined : styles.height }}>
+					{(maxSM ? [...sortedButtons].reverse() : sortedButtons).map(button => renderButton(button))}
 				</div>
 			</motion.div>
 		</HomeDraggableLayer>
