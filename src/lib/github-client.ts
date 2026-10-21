@@ -64,6 +64,7 @@ export async function createInstallationToken(jwt: string, installationId: numbe
 
 export async function getFileSha(token: string, owner: string, repo: string, path: string, branch: string): Promise<string | undefined> {
 	const res = await fetch(`${GH_API}/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(branch)}`, {
+		cache: 'no-store',
 		headers: {
 			Authorization: `Bearer ${token}`,
 			Accept: 'application/vnd.github+json',
@@ -100,6 +101,7 @@ export async function putFile(token: string, owner: string, repo: string, path: 
 
 export async function getRef(token: string, owner: string, repo: string, ref: string): Promise<{ sha: string }> {
 	const res = await fetch(`${GH_API}/repos/${owner}/${repo}/git/ref/${encodeURIComponent(ref)}`, {
+		cache: 'no-store',
 		headers: {
 			Authorization: `Bearer ${token}`,
 			Accept: 'application/vnd.github+json',
@@ -169,12 +171,16 @@ export async function updateRef(token: string, owner: string, repo: string, ref:
 		body: JSON.stringify({ sha, force })
 	})
 	if (res.status === 401) handle401Error()
-	if (res.status === 422) handle422Error()
+	if (res.status === 409 || res.status === 422) {
+		const detail = await res.json().catch(() => ({}))
+		throw new Error(`仓库分支更新失败（${res.status}）：${detail.message || '请稍后重试，当前修改仍保留在编辑器中'}`)
+	}
 	if (!res.ok) throw new Error(`update ref failed: ${res.status}`)
 }
 
 export async function readTextFileFromRepo(token: string, owner: string, repo: string, path: string, ref: string): Promise<string | null> {
 	const res = await fetch(`${GH_API}/repos/${owner}/${repo}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(ref)}`, {
+		cache: 'no-store',
 		headers: {
 			Authorization: `Bearer ${token}`,
 			Accept: 'application/vnd.github+json',
@@ -197,6 +203,7 @@ export async function readTextFileFromRepo(token: string, owner: string, repo: s
 export async function listRepoFilesRecursive(token: string, owner: string, repo: string, path: string, ref: string): Promise<string[]> {
 	async function fetchPath(targetPath: string): Promise<string[]> {
 		const res = await fetch(`${GH_API}/repos/${owner}/${repo}/contents/${encodeURIComponent(targetPath)}?ref=${encodeURIComponent(ref)}`, {
+			cache: 'no-store',
 			headers: {
 				Authorization: `Bearer ${token}`,
 				Accept: 'application/vnd.github+json',
