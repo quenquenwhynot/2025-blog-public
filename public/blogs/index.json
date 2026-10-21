@@ -1,18 +1,5 @@
 [
   {
-    "slug": "qq-2026-blog-time",
-    "title": "博客时间修复：时钟、日历和问候语要看同一份时间",
-    "date": "2026-10-19T12:00",
-    "category": "建站记录",
-    "tags": [
-      "前端开发",
-      "时间处理",
-      "问题复盘"
-    ],
-    "summary": "从一次相差约半天的显示问题，整理当地时间与日历计算的边界。",
-    "hidden": false
-  },
-  {
     "slug": "qq-2026-divide-conquer",
     "title": "分治法复习：先数分出了几个子问题",
     "date": "2026-10-18T12:00",
@@ -36,32 +23,6 @@
       "课程作业"
     ],
     "summary": "从阶跃和短脉冲响应，理解快慢、稳态与平滑。",
-    "hidden": false
-  },
-  {
-    "slug": "qq-2026-obsidian-publish",
-    "title": "从 Obsidian 写到博客：给发布留一个明确按钮",
-    "date": "2026-10-14T12:00",
-    "category": "建站记录",
-    "tags": [
-      "Obsidian",
-      "Markdown",
-      "写作流程"
-    ],
-    "summary": "专用文章库、稳定网址与单次提交，组成一个可继续维护的发布方式。",
-    "hidden": false
-  },
-  {
-    "slug": "qq-2026-blog-launch",
-    "title": "把 quenquen 博客搭起来：入口、内容和发布链路",
-    "date": "2026-10-13T12:00",
-    "category": "建站记录",
-    "tags": [
-      "个人博客",
-      "Cloudflare",
-      "GitHub"
-    ],
-    "summary": "从模板到自己的站点，整理部署、导航与内容入口的关系。",
     "hidden": false
   },
   {
@@ -698,6 +659,19 @@
     "hidden": false
   },
   {
+    "slug": "qq-2026-blog-time",
+    "title": "博客时间修复：时钟、日历和问候语要看同一份时间",
+    "date": "2025-10-19T12:00",
+    "category": "建站记录",
+    "tags": [
+      "前端开发",
+      "时间处理",
+      "问题复盘"
+    ],
+    "summary": "从一次相差约半天的显示问题，整理当地时间与日历计算的边界。",
+    "hidden": false
+  },
+  {
     "slug": "qq-2025-oop-home",
     "title": "智能家居类图：先分清对象，再连关系",
     "date": "2025-10-12T12:00",
@@ -1054,6 +1028,19 @@
     "hidden": true
   },
   {
+    "slug": "qq-2026-obsidian-publish",
+    "title": "从 Obsidian 写到博客：给发布留一个明确按钮",
+    "date": "2025-02-18T12:00",
+    "category": "建站记录",
+    "tags": [
+      "Obsidian",
+      "Markdown",
+      "写作流程"
+    ],
+    "summary": "专用文章库、稳定网址与单次提交，组成一个可继续维护的发布方式。",
+    "hidden": false
+  },
+  {
     "slug": "qq-2025-embedded-integration",
     "title": "嵌入式课程设计：把独立模块接成一个系统",
     "date": "2025-01-16T12:00",
@@ -1176,6 +1163,19 @@
       "调试"
     ],
     "summary": "用输入、状态变化和输出，拆开看一个小程序。",
+    "hidden": false
+  },
+  {
+    "slug": "qq-2026-blog-launch",
+    "title": "把 quenquen 博客搭起来：入口、内容和发布链路",
+    "date": "2024-09-18T12:00",
+    "category": "建站记录",
+    "tags": [
+      "个人博客",
+      "Cloudflare",
+      "GitHub"
+    ],
+    "summary": "从模板到自己的站点，整理部署、导航与内容入口的关系。",
     "hidden": false
   },
   {
