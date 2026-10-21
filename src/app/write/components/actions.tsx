@@ -9,7 +9,7 @@ import { usePublish } from '../hooks/use-publish'
 export function WriteActions() {
 	const { loading, mode, form, loadBlogForEdit, originalSlug, updateForm } = useWriteStore()
 	const { openPreview } = usePreviewStore()
-	const { isAuth, onChoosePrivateKey, onPublish, onDelete } = usePublish()
+	const { isAuth, commitUrl, onChoosePrivateKey, onPublish, onDelete } = usePublish()
 	const [saving, setSaving] = useState(false)
 	const keyInputRef = useRef<HTMLInputElement>(null)
 	const mdInputRef = useRef<HTMLInputElement>(null)
@@ -68,6 +68,13 @@ export function WriteActions() {
 
 	return (
 		<>
+			{commitUrl && (
+				<div role='status' className='card fixed right-6 bottom-6 z-50 max-w-sm space-y-2 p-4 text-sm max-sm:right-3 max-sm:bottom-3 max-sm:left-3'>
+					<p className='font-medium'>修改已提交，等待网站部署</p>
+					<p className='text-secondary'>部署通常需要几分钟，完成后刷新文章页。现在可以继续编辑，无需反复点击更新。</p>
+					<a href={commitUrl} target='_blank' rel='noopener noreferrer' className='text-brand underline'>查看提交与部署状态</a>
+				</div>
+			)}
 			<input
 				ref={keyInputRef}
 				type='file'
